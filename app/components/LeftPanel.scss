@@ -1,0 +1,42 @@
+.left-panel {
+  .add-file,
+  .search {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    border: solid 1px #e9e9ed;
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+
+  .add-file {
+    .input-file {
+      margin-bottom: 8px;
+    }
+
+    .file-name {
+      color: #7f7e83;
+    }
+  }
+
+  .search {
+    .input-wrapper {
+      width: 100%;
+      margin-bottom: 8px;
+      .input {
+        border-width: 1px;
+        width: 100%;
+        height: 20px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .search-btn {
+      width: 100%;
+      height: 24px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
