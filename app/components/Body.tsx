@@ -8,15 +8,36 @@ interface BodyProps {
 const Body = ({ jsonSheet }: BodyProps) => {
   return (
     <div className={styles['body-container']}>
-      {jsonSheet
-        ? jsonSheet.map(item => {
-            const row = Object.values(item).map(value => {
-              return <span key={`${value}`}>{value}</span>;
-            });
-            row.push(<br />);
-            return row;
-          })
-        : null}
+      {jsonSheet ? (
+        <table className={styles['excel-table']}>
+          <thead className={styles.header}>
+            <tr>
+              {Object.keys(jsonSheet[0]).map(key => {
+                return (
+                  <td key={`${key}`} className={styles.cell}>
+                    {key}
+                  </td>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {jsonSheet.map(item => {
+              return (
+                <tr key={`${item}`}>
+                  {Object.values(item).map(value => {
+                    return (
+                      <td className={styles.cell} key={`${value}`}>
+                        {value}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : null}
     </div>
   );
 };
