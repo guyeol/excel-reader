@@ -10,7 +10,7 @@ function LeftPanel({ onSearch, onSelectFile }: LeftPanelProps) {
   const [searchValue, setSearchValue] = useState('');
   const [fileNames, setFileNames] = useState<string[]>(['']);
 
-  const onChangeInput = e => {
+  const onChangeInput = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 

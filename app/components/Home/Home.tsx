@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import XLSX from 'xlsx';
 import './Home.scss';
-import LeftPanel from './LeftPanel';
-import Body from './Body';
+import LeftPanel from '../LeftPanel/LeftPanel';
+import Body from '../Body/Body';
 
 export default function Home() {
   const [query, setQuery] = useState('');
