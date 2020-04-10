@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './LeftPanel.scss';
 
 interface LeftPanelProps {
-  onSelectFile: (f: FileList) => void;
+  onSelectFile: (f: File[]) => void;
   onSearch: (value: string) => void;
 }
 
@@ -21,10 +21,19 @@ function LeftPanel({ onSearch, onSelectFile }: LeftPanelProps) {
   };
 
   const getFiles = e => {
-    const newFiles = Array.from<File>(e.target.files).map(f => f.name);
-    setFileNames(newFiles);
-    onSelectFile(e.target.files);
+    const files = Array.from<File>(e.target.files)
+      .filter(f => {
+        return ['xls', 'xlsx'].indexOf(getFileExtension(f.name)) > -1;
+      });
+
+    const fileNames = files.map(f => f.name);
+    setFileNames(fileNames);
+    onSelectFile(files);
   };
+
+  const getFileExtension = (filename: string) => {
+    return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+  }
 
   return (
     <div className={styles['left-panel']}>
@@ -33,6 +42,7 @@ function LeftPanel({ onSearch, onSelectFile }: LeftPanelProps) {
           type="file"
           onChange={getFiles}
           multiple
+          webkitdirectory=""
           className={styles['input-file']}
           accept=".xls, .xlsx"
         />

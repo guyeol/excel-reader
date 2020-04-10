@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import XLSX from 'xlsx';
-import './Home.scss';
+import styles from './Home.scss';
 import LeftPanel from '../LeftPanel/LeftPanel';
 import Body from '../Body/Body';
 
@@ -14,7 +14,7 @@ export default function Home() {
     return mergedArray;
   };
 
-  const fileToJSON = (files: FileList) => {
+  const fileToJSON = (files: File[]) => {
     const jsons: {}[] = [];
     let finished = false;
 
@@ -68,7 +68,7 @@ export default function Home() {
   };
 
   return (
-    <div className="home-container" data-tid="container">
+    <div className={styles["home-container"]} data-tid="container">
       <LeftPanel onSelectFile={fileToJSON} onSearch={onSearch} />
       <Body jsonSheet={result} />
     </div>
